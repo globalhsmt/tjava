@@ -1,4 +1,7 @@
-package game;
+package game.stage;
+
+import game.IStage;
+import game.TheCell;
 
 import java.util.HashSet;
 import java.util.Set;
