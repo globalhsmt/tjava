@@ -1,13 +1,13 @@
-package game;
+package seek;
 
-import game.TheMove.DIRECTION;
+import game.IStage;
+import game.TheBord;
+import game.TheMove;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import man.IMan;
-
-public class TheGame implements IMan {
+public class TheGame {
 
 	private final TheBord bord;
 	private final List<TheMove> moveHistory;
@@ -15,8 +15,8 @@ public class TheGame implements IMan {
 	/**
 	 * 外部から呼び出すコンストラクタ
 	 */
-	public TheGame() {
-		this.bord = new TheBord();
+  public TheGame(IStage stage) {
+    this.bord = new TheBord(stage);
 		this.moveHistory = new ArrayList<TheMove>();
 	}
 
@@ -26,11 +26,11 @@ public class TheGame implements IMan {
 		this.moveHistory = moveHistory;
 	}
 
-	@Override
-	public List<IMan> getChildren() {
-		List<IMan> manList = new ArrayList<IMan>();
+	public List<TheGame> getChildren() {
+		List<TheGame> manList = new ArrayList<TheGame>();
+		
 		for (String id : this.bord.getBlockIdSet()) {
-			for (DIRECTION dir : DIRECTION.values()) {
+			for (TheMove.DIRECTION dir : TheMove.DIRECTION.values()) {
 				TheMove nextMovement = new TheMove(id, dir);
 				TheBord nextBord = this.bord.makeNextBord(nextMovement);
 				if (nextBord != null) {
@@ -44,18 +44,29 @@ public class TheGame implements IMan {
 		return manList;
 	}
 
-	@Override
-	public void writeHistry() {
-
+	
+	public String printMyHistory() {
+	  StringBuilder sb = new StringBuilder();
+	  String sp = System.getProperty("line.separator");
+	  for(int idx = 0 ; idx < moveHistory.size() ; idx++){
+	    TheMove move = moveHistory.get(idx);
+	    sb.append(idx);
+      sb.append(" ");
+	    sb.append(move.getId());
+	    sb.append(" ");
+	    sb.append(move.getDir().name());
+	    sb.append(sp);
+	  }
+	  return sb.toString();
 	}
 
-	@Override
+	
 	public boolean isTrueMan() {
 		return this.bord.isGoal();
 	}
 
-	@Override
-	public boolean identify(IMan man) {
+	
+	public boolean identify(TheGame man) {
 		if (!(man instanceof TheGame)) {
 			return false;
 		}
