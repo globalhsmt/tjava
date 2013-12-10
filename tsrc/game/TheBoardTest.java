@@ -1,11 +1,15 @@
 package game;
 
+
+import game.TheBoard;
+import game.TheMove;
 import game.TheMove.DIRECTION;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TheBordTest {
+
+public class TheBoardTest {
 
   /**
    * ボード移動のテスト
@@ -23,10 +27,10 @@ public class TheBordTest {
     ts1.setMainId("A");
     ts1.putCell("B", 0, 0);
     ts1.putCell("A", 1, 0);
-    TheBord bord = new TheBord(ts1.makeStage(), ts1.getMainId());
+    TheBoard bord = new TheBoard(ts1.makeStage(), ts1.getMainId());
 
     //NGパターン（壁がある）
-    TheBord result = null;
+    TheBoard result = null;
     result = bord.makeNextBord(new TheMove("A", DIRECTION.UP));
     Assert.assertNull(result);
 
@@ -42,7 +46,7 @@ public class TheBordTest {
     expectedStage.setMainId("A");
     expectedStage.putCell("B", 0, 0);
     expectedStage.putCell("A", 1, 1);
-    Assert.assertTrue(result.isSameBord(new TheBord(expectedStage.makeStage(), expectedStage.getMainId())));
+    Assert.assertTrue(result.isSameBord(new TheBoard(expectedStage.makeStage(), expectedStage.getMainId())));
     
     result = result.makeNextBord(new TheMove("A", DIRECTION.UP));
     Assert.assertTrue(result.isSameBord(bord));//最初に戻っているはず
@@ -55,7 +59,7 @@ public class TheBordTest {
     expectedStage.setMainId("A");
     expectedStage.putCell("B", 0, 0);
     expectedStage.putCell("A", 2, 0);
-    Assert.assertTrue(result.isSameBord(new TheBord(expectedStage.makeStage(), expectedStage.getMainId())));
+    Assert.assertTrue(result.isSameBord(new TheBoard(expectedStage.makeStage(), expectedStage.getMainId())));
 
     result = result.makeNextBord(new TheMove("A", DIRECTION.LEFT));
     Assert.assertTrue(result.isSameBord(bord));//最初に戻っているはず
@@ -75,10 +79,10 @@ public class TheBordTest {
     ts1.putCell("B", 0, 0);
     ts1.putCell("A", 1, 0);
     ts1.putCell("A", 2, 0);
-    TheBord bord = new TheBord(ts1.makeStage(), ts1.getMainId());
+    TheBoard bord = new TheBoard(ts1.makeStage(), ts1.getMainId());
 
     //NGパターン（壁がある）
-    TheBord result = null;
+    TheBoard result = null;
     result = bord.makeNextBord(new TheMove("A", DIRECTION.UP));
     Assert.assertNull(result);
 
@@ -95,7 +99,7 @@ public class TheBordTest {
     expectedStage.putCell("B", 0, 0);
     expectedStage.putCell("A", 1, 1);
     expectedStage.putCell("A", 2, 1);
-    Assert.assertTrue(result.isSameBord(new TheBord(expectedStage.makeStage(), expectedStage.getMainId())));
+    Assert.assertTrue(result.isSameBord(new TheBoard(expectedStage.makeStage(), expectedStage.getMainId())));
     result = result.makeNextBord(new TheMove("A", DIRECTION.UP));
     Assert.assertTrue(result.isSameBord(bord));//最初に戻っているはず
 
@@ -107,7 +111,7 @@ public class TheBordTest {
     expectedStage.putCell("B", 0, 0);
     expectedStage.putCell("A", 2, 0);
     expectedStage.putCell("A", 3, 0);
-    Assert.assertTrue(result.isSameBord(new TheBord(expectedStage.makeStage(), expectedStage.getMainId())));
+    Assert.assertTrue(result.isSameBord(new TheBoard(expectedStage.makeStage(), expectedStage.getMainId())));
     result = result.makeNextBord(new TheMove("A", DIRECTION.LEFT));
     Assert.assertTrue(result.isSameBord(bord));//最初に戻っているはず
   }
@@ -120,10 +124,10 @@ public class TheBordTest {
     ts1.putCell("B", 0, 0);
     ts1.putCell("A", 1, 0);
     ts1.putCell("A", 1, 1);
-    TheBord bord = new TheBord(ts1.makeStage(), ts1.getMainId());
+    TheBoard bord = new TheBoard(ts1.makeStage(), ts1.getMainId());
 
     //NGパターン（壁がある）
-    TheBord result = null;
+    TheBoard result = null;
     result = bord.makeNextBord(new TheMove("A", DIRECTION.UP));
     Assert.assertNull(result);
 
@@ -140,7 +144,7 @@ public class TheBordTest {
     expectedStage.putCell("B", 0, 0);
     expectedStage.putCell("A", 1, 1);
     expectedStage.putCell("A", 1, 2);
-    Assert.assertTrue(result.isSameBord(new TheBord(expectedStage.makeStage(), expectedStage.getMainId())));
+    Assert.assertTrue(result.isSameBord(new TheBoard(expectedStage.makeStage(), expectedStage.getMainId())));
     result = result.makeNextBord(new TheMove("A", DIRECTION.UP));
     Assert.assertTrue(result.isSameBord(bord));//最初に戻っているはず
 
@@ -152,7 +156,7 @@ public class TheBordTest {
     expectedStage.putCell("B", 0, 0);
     expectedStage.putCell("A", 2, 0);
     expectedStage.putCell("A", 2, 1);
-    Assert.assertTrue(result.isSameBord(new TheBord(expectedStage.makeStage(), expectedStage.getMainId())));
+    Assert.assertTrue(result.isSameBord(new TheBoard(expectedStage.makeStage(), expectedStage.getMainId())));
     result = result.makeNextBord(new TheMove("A", DIRECTION.LEFT));
     Assert.assertTrue(result.isSameBord(bord));//最初に戻っているはず
   }
@@ -168,10 +172,10 @@ public class TheBordTest {
     ts1.putCell("A", 1, 1);
     ts1.putCell("A", 2, 0);
     ts1.putCell("A", 2, 1);
-    TheBord bord = new TheBord(ts1.makeStage(), ts1.getMainId());
+    TheBoard bord = new TheBoard(ts1.makeStage(), ts1.getMainId());
 
     //NGパターン（壁がある）
-    TheBord result = null;
+    TheBoard result = null;
     result = bord.makeNextBord(new TheMove("A", DIRECTION.UP));
     Assert.assertNull(result);
 
@@ -190,7 +194,7 @@ public class TheBordTest {
     expectedStage.putCell("A", 1, 2);
     expectedStage.putCell("A", 2, 1);
     expectedStage.putCell("A", 2, 2);
-    Assert.assertTrue(result.isSameBord(new TheBord(expectedStage.makeStage(), expectedStage.getMainId())));
+    Assert.assertTrue(result.isSameBord(new TheBoard(expectedStage.makeStage(), expectedStage.getMainId())));
     result = result.makeNextBord(new TheMove("A", DIRECTION.UP));
     Assert.assertTrue(result.isSameBord(bord));//最初に戻っているはず
 
@@ -204,7 +208,7 @@ public class TheBordTest {
     expectedStage.putCell("A", 2, 1);
     expectedStage.putCell("A", 3, 0);
     expectedStage.putCell("A", 3, 1);
-    Assert.assertTrue(result.isSameBord(new TheBord(expectedStage.makeStage(), expectedStage.getMainId())));
+    Assert.assertTrue(result.isSameBord(new TheBoard(expectedStage.makeStage(), expectedStage.getMainId())));
     result =result.makeNextBord(new TheMove("A", DIRECTION.LEFT));
     Assert.assertTrue(result.isSameBord(bord));//最初に戻っているはず
   }
@@ -215,7 +219,7 @@ public class TheBordTest {
     ts1.setMainId("A");
     ts1.putCell("B", 0, 0);
     ts1.putCell("A", 1, 0);
-    TheBord bord = new TheBord(ts1.makeStage(), ts1.getMainId());
+    TheBoard bord = new TheBoard(ts1.makeStage(), ts1.getMainId());
     bord.makeNextBord(null);
   }
   
@@ -234,7 +238,7 @@ public class TheBordTest {
     TestStage ts1 = new TestStage();
     ts1.setMainId("A");
     ts1.putCell("A", 1, 0);
-    TheBord bord = new TheBord(ts1.makeStage(), ts1.getMainId());
+    TheBoard bord = new TheBoard(ts1.makeStage(), ts1.getMainId());
     Assert.assertFalse(bord.isGoal());
     
     //////////////////////
@@ -243,7 +247,7 @@ public class TheBordTest {
     ts1.setMainId("A");
     ts1.putCell("A", 0, 4);
     ts1.putCell("A", 1, 4);
-    bord = new TheBord(ts1.makeStage(), ts1.getMainId());
+    bord = new TheBoard(ts1.makeStage(), ts1.getMainId());
     Assert.assertFalse(bord.isGoal());
     
 
@@ -253,7 +257,7 @@ public class TheBordTest {
     ts1.setMainId("A");
     ts1.putCell("A", 2, 4);
     ts1.putCell("A", 3, 4);
-    bord = new TheBord(ts1.makeStage(), ts1.getMainId());
+    bord = new TheBoard(ts1.makeStage(), ts1.getMainId());
     Assert.assertFalse(bord.isGoal());
     
     //////////////////////
@@ -261,7 +265,7 @@ public class TheBordTest {
     ts1 = new TestStage();
     ts1.setMainId("A");
     ts1.putCell("A", 1, 4);
-    bord = new TheBord(ts1.makeStage(), ts1.getMainId());
+    bord = new TheBoard(ts1.makeStage(), ts1.getMainId());
     Assert.assertTrue(bord.isGoal());
 
 
@@ -271,7 +275,7 @@ public class TheBordTest {
     ts1.setMainId("A");
     ts1.putCell("A", 2, 3);
     ts1.putCell("A", 2, 4);
-    bord = new TheBord(ts1.makeStage(), ts1.getMainId());
+    bord = new TheBoard(ts1.makeStage(), ts1.getMainId());
     Assert.assertTrue(bord.isGoal());
 
     //////////////////////
@@ -280,7 +284,7 @@ public class TheBordTest {
     ts1.setMainId("A");
     ts1.putCell("A", 1, 4);
     ts1.putCell("A", 2, 4);
-    bord = new TheBord(ts1.makeStage(), ts1.getMainId());
+    bord = new TheBoard(ts1.makeStage(), ts1.getMainId());
     Assert.assertTrue(bord.isGoal());
     //////////////////////
     //ゴールケース4(大）
@@ -290,7 +294,7 @@ public class TheBordTest {
     ts1.putCell("A", 2, 3);
     ts1.putCell("A", 1, 4);
     ts1.putCell("A", 2, 4);
-    bord = new TheBord(ts1.makeStage(), ts1.getMainId());
+    bord = new TheBoard(ts1.makeStage(), ts1.getMainId());
     Assert.assertTrue(bord.isGoal());
     
     
